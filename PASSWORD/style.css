@@ -1,0 +1,47 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    display: Flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: rgb(63,94,251);
+background: radial-gradient(circle, rgba(63,94,251,1) 7%, rgba(63,94,251,1) 12%, rgba(145,22,47,1) 68%);
+}
+.passlen{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 54%, rgba(253,29,29,1) 100%, rgba(252,176,69,1) 100%);
+margin: 2px;
+border-radius: 20px;
+}
+.text{
+    align-self: center;
+    margin: 0px 0px 0px 50px;
+
+
+}
+.box{
+    height: 280px;
+    width: 300px;
+    border: 1px solid rgb(226, 158, 158);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+
+
+}
+.num{
+    height: 14px;
+    width: 30px;
+}

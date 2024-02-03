@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="box">
+        <div class="textbox">
+            <input type="text" class="text">
+        </div>
+        <div class="passlen">
+            <div class="heading">
+                Password Length
+            </div>
+            <div class="lench">
+                <input type="number" class="num" id="totalChar" min="2" value="10">
+            </div>
+        </div>
+        <div class="passlen">
+            <div class="heading">
+                Contain UpperCase
+            </div>
+            <div class="lench">
+                <input type="checkbox" class="up" id="upperInput">
+            </div>
+        </div>
+        <div class="passlen">
+            <div class="heading">
+                Contain LowerCase
+            </div>
+            <div class="lench">
+                <input type="checkbox" class="low" id="lowerInput">
+            </div>
+        </div>
+        <div class="passlen">
+            <div class="heading">
+                Contain Number
+            </div>
+            <div class="lench">
+                <input type="checkbox" class="numm" id="numberInput">
+            </div>
+        </div>
+        <div class="passlen">
+            <div class="heading">
+                Contain Symbol
+            </div>
+            <div class="lench">
+                <input type="checkbox" class="sym" id="symbolInput">
+            </div>
+        </div>
+        <div class="button">
+            <button onclick="generatePassword()">Generate</button>
+        </div>
+    </div>
+
+    <script>
+        const upperSet = "QWERTYUIOPASDFGHJKLZXCVBNM";
+        const lowerSet = "qwertyuiopasdfghjklzxcvbnm";
+        const numberSet = "1234567890";
+        const symbolSet = "!@#$%^&*()_+{}[];'./:";
+
+        const getRandomData = function(dataset) {
+            return dataset[Math.floor(Math.random() * dataset.length)];
+        };
+
+        const generatePassword = () => {
+            const totalChar = document.getElementById("totalChar").value;
+            const upperInput = document.getElementById("upperInput");
+            const lowerInput = document.getElementById("lowerInput");
+            const numberInput = document.getElementById("numberInput");
+            const symbolInput = document.getElementById("symbolInput");
+            const passwordBox = document.querySelector(".text");
+
+            let password = "";
+
+            if (upperInput.checked) {
+                password += getRandomData(upperSet);
+            }
+
+            if (lowerInput.checked) {
+                password += getRandomData(lowerSet);
+            }
+
+            if (numberInput.checked) {
+                password += getRandomData(numberSet);
+            }
+
+            if (symbolInput.checked) {
+                password += getRandomData(symbolSet);
+            }
+
+            while (password.length < totalChar) {
+                const selectedSet = [upperSet, lowerSet, numberSet, symbolSet]
+                    .filter(set => set && set.length > 0 && set !== password.charAt(password.length - 1));
+
+                const randomSet = getRandomData(selectedSet);
+                password += getRandomData(randomSet);
+            }
+
+            // Shuffle the password characters for better randomness
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
+
+            passwordBox.value = password;
+        };
+    </script>
+</body>
+</html>
